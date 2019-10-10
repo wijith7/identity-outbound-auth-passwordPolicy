@@ -356,4 +356,13 @@ public class PasswordResetEnforcer extends AbstractApplicationAuthenticator
         }
         context.setSubject(authenticatedUser);
     }
+    private void updateAuthenticatedUserInStepConfig2(AuthenticationContext context,
+                                                     AuthenticatedUser authenticatedUser) {
+        Map<Integer, StepConfig> stepConfigMap = context.getSequenceConfig().getStepMap();
+        for (int i = 1; i <= stepConfigMap.size(); i++) {
+            stepConfigMap.get(i).setAuthenticatedUser(authenticatedUser);
+        }
+        context.setSubject(authenticatedUser);
+    }
+
 }
